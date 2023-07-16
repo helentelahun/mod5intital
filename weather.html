@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Weather Widget</title>
+  <link rel="stylesheet" type="text/css" href="https://classes.engineering.wustl.edu/cse330/content/weather.css">
+</head>
+<body>
+  <div class="weather" id="weatherWidget">
+    <div class="weather-loc"></div>
+    <div class="weather-humidity"></div>
+    <div class="weather-temp"></div>
+    <img class="weather-tomorrow" />
+    <img class="weather-dayaftertomorrow" />
+  </div>
+
+  <button id="updateWeatherBtn" onclick="updateWeather()">Update Weather</button>
+
+  <script>
+    function fetchWeather(city) {
+      var xhr = new XMLHttpRequest();
+      var url = "https://classes.engineering.wustl.edu/cse330/content/weather_json.php";
+
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          var weatherData = JSON.parse(xhr.responseText);
+          updateWeatherWidget(weatherData);
+        }
+      };
+
+      xhr.open("GET", url, true);
+      xhr.send();
+    }
+
+    function updateWeather() {
+      fetchWeather("St. Louis");
+    }
+
+    function updateWeatherWidget(weatherData) {
+      var weatherWidget = document.getElementById("weatherWidget");
+
+      // Update location
+      var locationDiv = weatherWidget.querySelector(".weather-loc");
+      locationDiv.innerHTML = "<strong>" + weatherData.location.city + "</strong>, " + weatherData.location.state;
+
+      // Update current temperature
+      var tempDiv = weatherWidget.querySelector(".weather-temp");
+      tempDiv.textContent = weatherData.current.temp;
+
+      // Update humidity
+      var humidityDiv = weatherWidget.querySelector(".weather-humidity");
+      humidityDiv.textContent = weatherData.atmosphere.humidity;
+
+      // Update image for tomorrow's forecast
+      var tomorrowImg = weatherWidget.querySelector(".weather-tomorrow");
+      tomorrowImg.src = "http://us.yimg.com/i/us/nws/weather/gr/" + weatherData.tomorrow.code + "ds.png";
+
+      // Update image for the day after tomorrow's forecast
+      var dayAfterTomorrowImg = weatherWidget.querySelector(".weather-dayaftertomorrow");
+      dayAfterTomorrowImg.src = "http://us.yimg.com/i/us/nws/weather/gr/" + weatherData.dayafter.code + "ds.png";
+    }
+
+    document.addEventListener("DOMContentLoaded", fetchWeather, false);
+  </script>
+</body>
+</html>
