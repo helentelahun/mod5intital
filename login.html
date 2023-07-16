@@ -5,25 +5,36 @@
     <link rel="stylesheet" type="text/css" href="login.css">
 </head>
 <body>
-    <h1>Log into Calen-der-da-der</h1>
+    <h2> Log into Calen-der-da-der!</h2>
+    <form id="login" method="POST">
+        <label for="username">Enter username:</label><br>
+        <input type="text" id="username" name="username"><br>
+        <label for="password">Enter password:</label><br>
+        <input type="text" id="password" name="password"><br>
+        <input type="submit" name="login" value="Login">
+    </form>
 
-<form action="loggedin.php" method="POST">
-    <label for="username">Enter username:</label><br>
-    <input type="text" id="username" name="username"><br>
-    <label for="password">Enter password:</label><br>
-    <input type="text" id="password" name="password"><br>
-    <input type="submit" name="login" value="Login">
-</form>
+    <h2> Register Now!</h2>
+    <form id="signup" method="POST">
+        <label for="firstname">Enter first name:</label><br>
+        <input type="text" id="first" name="first"><br>
+        <label for="lastname">Enter last name:</label><br>
+        <input type="text" id="last" name="last"><br>
+        <label for="username">Enter username:</label><br>
+        <input type="text" id="username" name="username"><br>
+        <label for="password">Enter password:</label><br>
+        <input type="text" id="password" name="password"><br>
+        <input type="submit" name="newUser" value="Sign Up">
+    </form>
 
-<form action="signup.html" method="POST">
-    <input type="submit" name="newUser" value="Sign Up">
-</form>
-
-<form action="questCalendar.html" method="POST">
-    <input type="submit" name="guest" value="Continue as Guest">
-</form>
+    <form action="questCalendar.html" method="POST">
+        <input type="submit" name="guest" value="Continue as Guest">
+    </form>
 
 
-</form>
+    </form>
+    <script>
+
+    </script>
 </body>
 </html>

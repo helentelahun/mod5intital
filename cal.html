@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Calendar App</title>
+  <link rel="stylesheet" type="text/css" href="cal.css">
+  <script src="script.js"></script>
+</head>
+<body>
+  <h1>Calendar App</h1>
+
+  <div id="calendar">
+    <div class="header">
+      <button id="prevBtn">&lt;</button>
+      <h2 id="monthYear"></h2>
+      <button id="nextBtn">&gt;</button>
+    </div>
+    <div class="days">
+      <div class="day">Sun</div>
+      <div class="day">Mon</div>
+      <div class="day">Tue</div>
+      <div class="day">Wed</div>
+      <div class="day">Thu</div>
+      <div class="day">Fri</div>
+      <div class="day">Sat</div>
+    </div>
+    <div class="cells">
+      <!-- Calendar cells will be dynamically generated here -->
+    </div>
+  </div>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        function renderCalendar(month, year) {
+            monthYear.textContent = getMonthName(month) + " " + year;
+            cellsContainer.innerHTML = "";
+
+            var firstDay = new Date(year, month, 1).getDay();
+            var daysInMonth = new Date(year, month + 1, 0).getDate();
+
+            // Add empty cells for previous month's days
+            for (var i = 0; i < firstDay; i++) {
+            var emptyCell = createCell("", true);
+            cellsContainer.appendChild(emptyCell);
+            }
+
+            // Add cells for current month's days
+            for (var day = 1; day <= daysInMonth; day++) {
+            var cell = createCell(day);
+            cellsContainer.appendChild(cell);
+            }
+        }
+
+        function createCell(day, isInactive) {
+            var cell = document.createElement("div");
+            cell.className = "cell" + (isInactive ? " inactive" : "");
+            cell.textContent = day;
+
+            // Add click event listener to the cell
+            cell.addEventListener("click", function() {
+            if (!isInactive) {
+                // Handle cell click event
+                console.log("Cell clicked:", day);
+            }
+            });
+
+            return cell;
+        }
+
+        function getMonthName(month) {
+            var monthNames = [
+            "January", "February", "March", "April", "May", "June",
+            "July", "August", "September", "October", "November", "December"
+            ];
+            return monthNames[month];
+        }
+
+        var calendar = document.getElementById("calendar");
+        var monthYear = calendar.querySelector("#monthYear");
+        var prevBtn = calendar.querySelector("#prevBtn");
+        var nextBtn = calendar.querySelector("#nextBtn");
+        var cellsContainer = calendar.querySelector(".cells");
+
+        var currentDate = new Date();
+        var currentMonth = currentDate.getMonth();
+        var currentYear = currentDate.getFullYear();
+
+        renderCalendar(currentMonth, currentYear);
+
+        prevBtn.addEventListener("click", function() {
+            currentYear = currentMonth === 0 ? currentYear - 1 : currentYear;
+            currentMonth = currentMonth === 0 ? 11 : currentMonth - 1;
+            renderCalendar(currentMonth, currentYear);
+        });
+
+        nextBtn.addEventListener("click", function() {
+            currentYear = currentMonth === 11 ? currentYear + 1 : currentYear;
+            currentMonth = currentMonth === 11 ? 0 : currentMonth + 1;
+            renderCalendar(currentMonth, currentYear);
+        });
+    });
+  </script>
+</body>
+</html>
