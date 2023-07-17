@@ -12,7 +12,20 @@
     <div class="header">
       <button id="prevBtn">&lt;</button>
       <h2 id="monthYear"></h2>
-      <button id="nextBtn">&gt;</button>
+      <button id="nextBtn">&gt;</button><br>
+      <button class="button" onclick="show('popup')">Add Event</button>
+      <div class="popup" id="popup">
+      <h2>Add a new event</h2>
+      <label for="title">Enter name of event:</label><br>
+      <input type="text" id="title" name="title"><br>
+      <label for="date">Enter date of event:</label><br>
+      <input type="text" id="date" name="date"><br>
+      <label for="time">Enter time of event:</label><br>
+      <input type="text" id="time" name="time"><br>
+      <button class="button" id="newEvent">Submit</button>
+      <a href="#" onclick="hide('popup')">Close</a>
+      </div>
+      <button id="logout">Logout</button>
       
     </div>
     <div class="days">
@@ -99,6 +112,17 @@
             renderCalendar(currentMonth, currentYear);
         });
     });
+    $ = function(id) {
+  return document.getElementById(id);
+}
+
+var show = function(id) {
+  $(id).style.display = 'block';
+}
+
+var hide = function(id) {
+  $(id).style.display = 'none';
+}
   </script>
 </body>
 </html>
