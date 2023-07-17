@@ -8,10 +8,25 @@
     <h1>Calendar</h1>
     <div class="calendar">
     <div class="calendar-header">
-        <input type="submit" name="previous" value="Previous Month">
-        <input type="submit" name="next" value="Next Month">
-        <input type="submit" name="logout" value="Logout">
-        <input type="submit" name="addEvent" value="Add Event">
+        
+        <button class="button" id="previous_month">Previous</button>
+        <button class="button" id="next_month">Next</button>
+        <button class="button" onclick="show('popup')">Add Event</button>
+    <div class="popup" id="popup">
+    <h2>Add a new event</h2>
+    <label for="title">Enter name of event:</label><br>
+    <input type="text" id="title" name="title"><br>
+    <label for="date">Enter date of event:</label><br>
+    <input type="text" id="date" name="date"><br>
+    <label for="time">Enter time of event:</label><br>
+    <input type="text" id="time" name="time"><br>
+    <button class="button" id="newEvent">Submit</button>
+    <a href="#" onclick="hide('popup')">Close</a>
+    </div>
+        <button id="logout">Logout</button>
+        
+
+    
     </div>
     <div class="calendar-grid">
       <div class="weekdays">
@@ -23,8 +38,21 @@
         <div>Fri</div>
         <div>Sat</div>
       </div>
-      <div class="days"></div>
+    <div class = "days">1</div>
     </div>
   </div>
 </body>
+<script>
+    $ = function(id) {
+  return document.getElementById(id);
+}
+
+var show = function(id) {
+  $(id).style.display = 'block';
+}
+
+var hide = function(id) {
+  $(id).style.display = 'none';
+}
+</script>
 </html>

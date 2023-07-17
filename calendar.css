@@ -22,6 +22,8 @@
     display: grid;
     grid-template-columns: repeat(7, 1fr);
     gap: 5px;
+    border: 1px solid #ccc;
+    padding: 5px;
   }
   
   .weekdays {
@@ -48,4 +50,62 @@
 .day:hover {
     background-color: #e0e0e0;
   }
+
+  button {
+    display: inline-block;
+    margin-top: 30px;
+    background-color: rgba(255,255,255,0.3);
+    border: 3px solid green;
+    color: green;
+    font-size: 18px;
+    padding: 10px 20px;
+    
+}
+
+button:hover {
+    background-color: green;
+    color: #FFF;
+    border: 3px solid green;
+    transition: all 0.3s ease 0s;
+}
+
+  .popup {
+    display: none;
+    position: fixed;
+    padding: 10px;
+    width: 500px;
+    height: 500px;
+    margin-top: 40%;
+    margin-left: -1%;
+    background: #FFF;
+    border: 3px solid #F04A49;
+    z-index: 20;
+  }
+  
+  #popup:after {
+    position: fixed;
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: -2;
+  }
+  
+  #popup:before {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: #FFF;
+    z-index: -1;
+  }
+  
+  
+  
+  
+  
   

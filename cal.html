@@ -3,7 +3,7 @@
 <head>
   <title>Calendar App</title>
   <link rel="stylesheet" type="text/css" href="cal.css">
-  <script src="script.js"></script>
+
 </head>
 <body>
   <h1>Calendar App</h1>
@@ -13,6 +13,7 @@
       <button id="prevBtn">&lt;</button>
       <h2 id="monthYear"></h2>
       <button id="nextBtn">&gt;</button>
+      
     </div>
     <div class="days">
       <div class="day">Sun</div>
@@ -30,6 +31,8 @@
   <script>
     document.addEventListener("DOMContentLoaded", function() {
         function renderCalendar(month, year) {
+            var cellsContainer = document.querySelector(".cells");
+            var monthYear = document.getElementById("monthYear");
             monthYear.textContent = getMonthName(month) + " " + year;
             cellsContainer.innerHTML = "";
 
@@ -77,7 +80,6 @@
         var monthYear = calendar.querySelector("#monthYear");
         var prevBtn = calendar.querySelector("#prevBtn");
         var nextBtn = calendar.querySelector("#nextBtn");
-        var cellsContainer = calendar.querySelector(".cells");
 
         var currentDate = new Date();
         var currentMonth = currentDate.getMonth();
